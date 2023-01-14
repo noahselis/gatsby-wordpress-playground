@@ -1,5 +1,6 @@
-import React from "react"
-import Layout from './src/components/Layout.js'
+const React = require("react")
+const Layout = require("./src/components/layout").default
+
 
 // custom typefaces
 import "typeface-montserrat"
@@ -11,6 +12,6 @@ import "./src/css/normalize.css"
 // custom CSS styles
 import "./src/css/style.css"
 
-export function wrapPageElement({ element, props }) {
+exports.wrapPageElement = ({ element, props }) => {
     return <Layout {...props}>{element}</Layout>;
   }
