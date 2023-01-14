@@ -14,9 +14,7 @@ export default function Layout({children}) {
   return (
     <SiteBorderStyles>
       <Nav />
-      <main>
         {children}
-      </main>
       <Footer />
     </SiteBorderStyles>
   )
