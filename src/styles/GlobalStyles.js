@@ -9,5 +9,13 @@ const GlobalStyles = createGlobalStyle`
     max-width: 1500px;
     margin: 0 auto;
 }
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+
 `
 export default GlobalStyles

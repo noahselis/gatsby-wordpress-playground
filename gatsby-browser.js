@@ -5,12 +5,6 @@ import Layout from "./src/components/layout"
 import "typeface-montserrat"
 import "typeface-merriweather"
 
-// normalize CSS across browsers
-import "./src/css/normalize.css"
-
-// custom CSS styles
-import "./src/css/style.css"
-
 export function wrapPageElement ({ element, props }) {
     return <Layout {...props}>{element}</Layout>;
   }
