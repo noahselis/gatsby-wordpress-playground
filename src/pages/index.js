@@ -6,13 +6,7 @@ const HeroGrid = styled.div`
   display: grid;
   height: 100vh;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-
-  .gatsby-image-wrapper {
-    object-fit: cover;
-    width: 100%;
-
-  }
+  grid-template-rows: repeat(3, 1fr);
 
   .hero {
     grid-column: 1 / -1;
@@ -25,23 +19,24 @@ const HeroGrid = styled.div`
     }
   }
 
-  h1 {
-    text-align: center;
-    grid-column 5 / 9;
-    grid-row-end: 6;
+  #hero-txt {
+    display: grid;
+    align-items: flex-end;
+    justify-content: center;
+    grid-column: 5 / 9;
+    grid-row-end: 2;
     z-index: 1;
-    color: var(--white);
-    border: 3px solid black;
-  }  
-  button {
-    text-align: center;
-    grid-column 6 / 8;
-    grid-row-end: 7;
-    z-index: 1;
-    color: var(--white);
-    border: 3px solid black;
-    height: 50px;
-  }  
+
+    p {
+      font-size: 2rem;
+      color: white;
+      text-align: center;
+      grid-row-end: 3;
+      color: var(--white);
+      border: 3px solid black;
+      height: 50px;
+    }
+  }
 `
 
 export default function HomePage({ data }) {
@@ -52,8 +47,9 @@ export default function HomePage({ data }) {
       <div className="hero">
         <img src={hero.heroImage.sourceUrl} alt={hero.heroImage.altText} />
       </div>
-      <h1>Home Page!</h1>
-      <button style={{}}>{hero.heroText}</button>
+      <span id="hero-txt">
+        <p style={{}}>{hero.heroText}</p>
+      </span>
     </HeroGrid>
   )
 }

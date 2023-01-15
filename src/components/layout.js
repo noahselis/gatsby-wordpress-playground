@@ -1,5 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
+import GlobalStyles from "../styles/GlobalStyles"
 import Nav from "./Nav"
 import Footer from "./Footer"
 
@@ -12,11 +13,14 @@ const SiteBorderStyles = styled.div`
 
 export default function Layout({children}) {
   return (
+    <>
+    <GlobalStyles />
     <SiteBorderStyles>
       <Nav />
         {children}
       <Footer />
     </SiteBorderStyles>
+    </>
   )
 }
 
