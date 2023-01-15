@@ -28,12 +28,11 @@ const HeroGrid = styled.div`
     z-index: 1;
 
     p {
-      font-size: 2rem;
+      font-size: clamp(1rem, 5vw, 2rem);
       color: white;
       text-align: center;
       grid-row-end: 3;
       color: var(--white);
-      border: 3px solid black;
       height: 50px;
     }
   }
