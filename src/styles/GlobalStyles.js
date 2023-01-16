@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
     margin: 0 auto;
 }
 
+html {
+    font-size: 16px;
+}
+
 *,
 :after,
 :before {
