@@ -8,7 +8,7 @@ const IntroStyles = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3fr);
   padding: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 
   h1 {
     margin: 8px;
@@ -19,17 +19,15 @@ const IntroStyles = styled.div`
   p {
     font-size: 1.25em;
   }
-
-  border: 1px solid red;
 `
 
 const TeamHeading = styled.div`
   display: grid;
   grid-template-columns: 1fr minmax(500px, 1fr) 1fr;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows:  minmax(50px, 1fr);
   place-content: center;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 
   h3 {
     align-self: end;
@@ -42,7 +40,7 @@ const TeamHeading = styled.div`
 
 const TeamGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 400px);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 
   img {
     width: 100%;
@@ -54,9 +52,6 @@ const TeamGrid = styled.div`
 export default function AboutPage({ data }) {
   const intro = data.wpPage.aboutUs.introBlurb
   const members = data.wpPage.aboutUs.teamMember
-  // console.log(data)
-  // console.log({ intro })
-  console.log({ members })
   return (
     <>
       <IntroStyles>
@@ -69,7 +64,9 @@ export default function AboutPage({ data }) {
         <h1>Nerds, jocks, artists, and weirdos: the gang’s all here.</h1>
       </TeamHeading>
       <TeamGrid>
-        <TeamMember members={members} />
+      {members.map(member => {
+        return <TeamMember member={member} />
+      })}
       </TeamGrid>
     </>
   )
