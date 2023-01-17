@@ -64,7 +64,7 @@ export default function AboutPage({ data }) {
         <h1>Nerds, jocks, artists, and weirdos: the gang’s all here.</h1>
       </TeamHeading>
       <TeamGrid>
-      {members.map(member => {
+      {members?.map(member => {
         return <TeamMember member={member} />
       })}
       </TeamGrid>

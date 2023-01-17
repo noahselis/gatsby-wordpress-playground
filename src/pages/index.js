@@ -56,7 +56,7 @@ export default function HomePage({ data }) {
         </span>
       </HeroGrid>
       <div>
-        {sections.map((section, index) => {
+        {sections?.map((section, index) => {
           const typeName = section.__typename
 
           switch (typeName) {
