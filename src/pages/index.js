@@ -1,110 +1,107 @@
 import React from "react"
-import styled from "styled-components"
 import { graphql } from "gatsby"
-import NoPic from "../components/Paragraphs/NoPic"
-import PicLeft from "../components/Paragraphs/PicLeft"
-import PicRight from "../components/Paragraphs/PicRight"
-
-const HeroGrid = styled.div`
-  display: grid;
-  height: 100vh;
-  grid-template-columns: repeat(12, 1fr);
-
-  .hero {
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
-    z-index: 0;
-
-    img {
-      width: 100%;
-      object-fit: cover;
-      max-height: 100vh;
-    }
-  }
-
-  #hero-txt {
-    display: grid;
-    place-content: center;
-    grid-column: 1 / -1;
-    grid-row-end: 1 / -1;
-    grid-area: 1 / 5 / -1 / 9;
-    z-index: 1;
-
-    p {
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      color: white;
-      text-align: center;
-      grid-row-end: 3;
-      color: var(--white);
-      height: 50px;
-    }
-  }
-`
+import HeroBanner from "../components/HeroComponents/HeroBanner"
+import BasicContent from "../components/BasicContent"
+import LogoGrid from "../components/LogoGrid"
 
 export default function HomePage({ data }) {
   // console.log(data)
-  const hero = data.wpPage.homePage.herosection
-  const sections = data.wpPage.homePage.paragraphSections
+  const contentBlocks = data?.wpPage?.template?.siteContent?.contentBlocks
+  console.log({ contentBlocks })
   return (
     <>
-      <HeroGrid>
-        <div className="hero">
-          <img src={hero.image.sourceUrl} alt={hero.image.altText} />
-        </div>
-        <span id="hero-txt">
-          <p style={{ color: hero.textColor }}>{hero.heroText}</p>
-        </span>
-      </HeroGrid>
-      <div>
-        {sections?.map((section, index) => {
-          const typeName = section.__typename
+      {contentBlocks.map((contentBlock, index) => {
+        const contentBlockName = contentBlock.__typename
+        console.log(contentBlockName)
 
-          switch (typeName) {
-            case "WpPage_Homepage_ParagraphSections_ParagraphNoPic":
-              return <NoPic key={index} {...section} />
+        switch (contentBlockName) {
+          case "WpDefaultTemplate_Sitecontent_ContentBlocks_HeroBanner":
+            return (
+              <HeroBanner key={contentBlockName} contentBlock={contentBlock} />
+            )
 
-            case "WpPage_Homepage_ParagraphSections_ParagraphPicLeft":
-              return <PicLeft key={index} {...section} />
+          case "WpDefaultTemplate_Sitecontent_ContentBlocks_BasicContent":
+            return (
+              <BasicContent
+                key={contentBlockName}
+                contentBlock={contentBlock}
+              />
+            )
 
-            case "WpPage_Homepage_ParagraphSections_ParagraphPicRight":
-                return <PicRight key={index} {...section} />
-          }
-        })}
-      </div>
+          case "WpDefaultTemplate_Sitecontent_ContentBlocks_FeaturedLogos":
+            return (
+              <LogoGrid key={contentBlockName} contentBlock={contentBlock} />
+            )
+
+          default:
+            ;<h1>you done busted it</h1>
+        }
+      })}
     </>
   )
 }
 
-export const homeQuery = graphql`
+export const bigQuery = graphql`
   query {
     wpPage(uri: { eq: "/home-page/" }) {
-      homePage {
-        herosection {
-          textColor
-          heroText
-          url
-          image {
-            altText
-            sourceUrl
-          }
-        }
-        paragraphSections {
-          __typename
-          ... on WpPage_Homepage_ParagraphSections_ParagraphNoPic {
-            paragraphNoPic
-          }
-          ... on WpPage_Homepage_ParagraphSections_ParagraphPicLeft {
-            paragraph
-            picLeft {
-              altText
-              sourceUrl
-            }
-          }
-          ... on WpPage_Homepage_ParagraphSections_ParagraphPicRight {
-            paragraph
-            picRight {
-              altText
-              sourceUrl
+      id
+      link
+      template {
+        ... on WpDefaultTemplate {
+          siteContent {
+            contentBlocks {
+              ... on WpDefaultTemplate_Sitecontent_ContentBlocks_HeroBanner {
+                __typename
+                heroType
+                backgroundColor
+                fieldGroupName
+                statement
+                backgroundVideo
+                backgroundImage {
+                  gatsbyImage(cropFocus: CENTER, width: 1600)
+                  altText
+                }
+                image {
+                  altText
+                  gatsbyImage(width: 300, placeholder: BLURRED)
+                }
+                links {
+                  fieldGroupName
+                  link1 {
+                    target
+                    title
+                    url
+                  }
+                  link2 {
+                    target
+                    title
+                    url
+                  }
+                }
+              }
+              ... on WpDefaultTemplate_Sitecontent_ContentBlocks_BasicContent {
+                __typename
+                fieldGroupName
+                width
+                content
+              }
+              ... on WpDefaultTemplate_Sitecontent_ContentBlocks_FeaturedLogos {
+                __typename
+                title
+                subtitle
+                logos {
+                  logo {
+                    altText
+                    gatsbyImage(width: 250)
+                  }
+                }
+                secondaryLogos {
+                  logo {
+                    altText
+                    gatsbyImage(width: 250)
+                  }
+                }
+              }
             }
           }
         }

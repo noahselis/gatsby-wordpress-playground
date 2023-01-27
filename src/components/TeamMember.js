@@ -42,14 +42,13 @@ const MemberStyle = styled.div`
 `
 
 export default function TeamMember({ member }) {
-  console.warn(member.name)
   return (
     <MemberStyle>
-        <img src={member.picture.sourceUrl} alt={member.picture.alt} />
+        <img src={member?.picture.sourceUrl} alt={member.picture.alt} />
       <span className="contentWrap">
-        <p id='name'>{member.name}</p>
-        <p id='title'>{member.title}</p>
-        <p id='pronouns'>({member.pronoun})</p>
+        <p id='name'>{member?.name}</p>
+        <p id='title'>{member?.title}</p>
+        <p id='pronouns'>({member?.pronoun})</p>
       </span>
     </MemberStyle>
   )
