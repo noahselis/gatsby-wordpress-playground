@@ -36,9 +36,10 @@ const HeroGrid = styled.div`
     grid-area: 1 / 1 / 2 / 2;
     z-index: 1;
     place-content: center;
-    transform: translateY(-10%);
 
     .gatsby-image-wrapper {
+      display: grid;
+      transform: translateY(-50%);
       height: fit-content;
       width: 250px;
     }
