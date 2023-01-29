@@ -14,6 +14,7 @@ const FooterStyles = styled.footer`
   background: transparent
     linear-gradient(240deg, #11393d 0%, #08675c 100%, #08675c 100%) 0% 0%
     no-repeat padding-box;
+  margin-top: 3rem;
 
   .stripes {
     height: fit-content;

@@ -1,41 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
-import HeroBanner from "../components/HeroComponents/HeroBanner"
-import BasicContent from "../components/BasicContent"
-import LogoGrid from "../components/LogoGrid"
+import Components from "../components"
 
 export default function HomePage({ data }) {
-  // console.log(data)
+  // console.log("🚀🚀🚀", data, "🚀🚀🚀")
   const contentBlocks = data?.wpPage?.template?.siteContent?.contentBlocks
+  const lastThreePosts = data?.allWpPost
+  // console.log({ lastThreePosts })
   console.log({ contentBlocks })
   return (
     <>
-      {contentBlocks.map((contentBlock, index) => {
-        const contentBlockName = contentBlock.__typename
-        console.log(contentBlockName)
-
-        switch (contentBlockName) {
-          case "WpDefaultTemplate_Sitecontent_ContentBlocks_HeroBanner":
-            return (
-              <HeroBanner key={contentBlockName} contentBlock={contentBlock} />
-            )
-
-          case "WpDefaultTemplate_Sitecontent_ContentBlocks_BasicContent":
-            return (
-              <BasicContent
-                key={contentBlockName}
-                contentBlock={contentBlock}
-              />
-            )
-
-          case "WpDefaultTemplate_Sitecontent_ContentBlocks_FeaturedLogos":
-            return (
-              <LogoGrid key={contentBlockName} contentBlock={contentBlock} />
-            )
-
-          default:
-            ;<h1>you done busted it</h1>
-        }
+      {contentBlocks.map(contentBlock => {
+        const contentBlockName = contentBlock.__typename?.split("_").pop()
+        if (
+          contentBlockName === undefined
+        ) return
+        const Component = Components[contentBlockName]
+        return <Component key={contentBlockName} lastThreePosts={lastThreePosts} contentBlock={contentBlock} />
       })}
     </>
   )
@@ -102,9 +83,35 @@ export const bigQuery = graphql`
                   }
                 }
               }
+              ... on WpDefaultTemplate_Sitecontent_ContentBlocks_RecentNews {
+                __typename
+                title
+              }
             }
           }
         }
+      }
+    }
+    allWpPost(limit: 3) {
+      nodes {
+        categories {
+          nodes {
+            name
+          }
+        }
+        id
+        contentType {
+          node {
+            id
+            label
+          }
+        }
+        author {
+          node {
+            name
+          }
+        }
+        content
       }
     }
   }

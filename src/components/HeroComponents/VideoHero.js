@@ -65,35 +65,17 @@ const HeroGrid = styled.div`
     z-index: 1;
     transform: translateY(28%);
 
-    
     .btn-wrap {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       a {
         width: fit-content;
       }
       button {
-        padding: 1rem;
-        border-radius: 10px;
-        text-align: center;
-        text-transform: uppercase;
-        color: var(--white);
-        background-color: rgba(42, 54, 125, 0.8);
-        margin: 1rem 0;
-        cursor: pointer;
+        padding: 1rem 1rem;
         align-self: center;
-      }
-
-      #btn-1:hover {
-        background-color: rgba(42, 54, 125, 1);
-        text-decoration: underline;
-      }
-
-      #btn-2:hover {
-        background-color: rgba(42, 54, 125, 1);
-        text-decoration: underline;
       }
     }
   }
@@ -125,7 +107,7 @@ export default function HeroBanner({ heroContent }) {
         <span className="hero-btns">
           <div className="btn-wrap">
             {videoHero?.links?.link1?.title && (
-              <a href={videoHero?.links?.link1?.url} target='_blank'>
+              <a href={videoHero?.links?.link1?.url} target="_blank">
                 <button id="btn-1">{videoHero?.links?.link1?.title}</button>
               </a>
             )}
