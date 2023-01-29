@@ -1,5 +1,5 @@
 // import { graphql } from "gatsby"
-// import React from "react"
+import React from "react"
 // import styled from "styled-components"
 // import TeamMember from "../components/TeamMember"
 
@@ -100,3 +100,11 @@
 //     }
 //   }
 // `
+
+export default function AboutPage() {
+  return (
+    <>
+      <h1>About</h1>
+    </>
+  )
+}
