@@ -101,7 +101,9 @@ export default function FeaturedLogos({ contentBlock }) {
       )}
 
       <div className="btnWrap">
-        <button id="viewMore" onClick={() => setDisplaySecondaryGrid(!displaySecondaryGrid)}>View More?</button>
+        <button id="viewMore" onClick={() => setDisplaySecondaryGrid(!displaySecondaryGrid)}>
+        { displaySecondaryGrid ? 'View Less' : 'View More'}
+        </button>
       </div>
     </FeaturedLogosStyles>
   )

@@ -88,12 +88,12 @@ export default function HeroBanner({ heroContent }) {
     <>
       <HeroGrid>
         <div id="hero-vid">
-          <video controls>
+          {/* <video controls>
             <source src={videoHero?.backgroundVideo} type="video/mp4" />
-          </video>
-          {/* <video width={'100%'} loop autoPlay muted>
-            <source src={videoHero?.backgroundVideo} type='video/mp4' />
           </video> */}
+          <video width={'100%'} loop autoPlay muted>
+            <source src={videoHero?.backgroundVideo} type='video/mp4' />
+          </video>
         </div>
         <div id="overlay" />
         <span id="hero-img">
