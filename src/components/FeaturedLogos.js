@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { useState } from "react"
 
-const LogoGridStyles = styled.section`
+const FeaturedLogosStyles = styled.section`
   .headerContent {
     display: grid;
     place-content: center;
@@ -62,7 +62,7 @@ const LogoGridStyles = styled.section`
   }
 `
 
-export default function LogoGrid({ contentBlock }) {
+export default function FeaturedLogos({ contentBlock }) {
   const logoContent = contentBlock
   const logos = logoContent.logos
   const secondaryLogos = logoContent.secondaryLogos
@@ -71,7 +71,7 @@ export default function LogoGrid({ contentBlock }) {
   const [displaySecondaryGrid, setDisplaySecondaryGrid] = useState(false)
 
   return (
-    <LogoGridStyles>
+    <FeaturedLogosStyles>
       <div className="headerContent">
         <p id="title">{logoContent.title}</p>
         <p id="subtitle">{logoContent.subtitle}</p>
@@ -103,6 +103,6 @@ export default function LogoGrid({ contentBlock }) {
       <div className="btnWrap">
         <button id="viewMore" onClick={() => setDisplaySecondaryGrid(!displaySecondaryGrid)}>View More?</button>
       </div>
-    </LogoGridStyles>
+    </FeaturedLogosStyles>
   )
 }

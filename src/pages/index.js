@@ -12,11 +12,15 @@ export default function HomePage({ data }) {
     <>
       {contentBlocks.map(contentBlock => {
         const contentBlockName = contentBlock.__typename?.split("_").pop()
-        if (
-          contentBlockName === undefined
-        ) return
+        if (contentBlockName === undefined) return
         const Component = Components[contentBlockName]
-        return <Component key={contentBlockName} lastThreePosts={lastThreePosts} contentBlock={contentBlock} />
+        return (
+          <Component
+            key={contentBlockName}
+            lastThreePosts={lastThreePosts}
+            contentBlock={contentBlock}
+          />
+        )
       })}
     </>
   )
@@ -94,6 +98,14 @@ export const bigQuery = graphql`
     }
     allWpPost(limit: 3) {
       nodes {
+        title
+        slug
+        featuredImage {
+          node {
+            altText
+            gatsbyImage(width: 340)
+          }
+        }
         categories {
           nodes {
             name
